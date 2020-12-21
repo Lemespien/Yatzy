@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yatzy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div style="display:flex;">
+    <div>
+        <table>
+                <tr class="name">
+                <th>Navn</th>
+            </tr>
+            <tr class="numbers ones">
+                <th>Enere</th>
+            </tr>
+            <tr class="numbers twos">
+                <th>Toere</th>
+            </tr>
+            <tr class="numbers threes">
+                <th>Treere</th>
+            </tr>
+            <tr class="numbers fours">
+                <th>Firere</th>
+            </tr>
+            <tr class="numbers fives">
+                <th>Femere</th>
+            </tr>
+            <tr class="numbers sixes">
+                <th>Seksere</th>
+            </tr>
+            <tr class="numbers sum">
+                <th>Sum</th>
+            </tr>
+            <tr class="numbers bonus">
+                <th>Bonus</th>
+            </tr>
+            <tr class="numbers pair">
+                <th>1 Par</th>
+            </tr>
+            <tr class="numbers twopair">
+                <th>2 Par</th>
+            </tr>
+            <tr class="numbers threepair">
+                <th>3 Par</th>
+            </tr>
+            <tr class="numbers toak">
+                <th>3 Like</th>
+            </tr>
+            <tr class="numbers foak">
+                <th>4 Like</th>
+            </tr>
+            <tr class="numbers fioak">
+                <th>5 Like</th>
+            </tr>
+            <tr class="numbers sstraight">
+                <th>Liten Straight</th>
+            </tr>
+            <tr class="numbers lstraight">
+                <th>Stor Straight</th>
+            </tr>
+            <tr class="numbers fstraight">
+                <th>Full Straight</th>
+            </tr>
+            <tr class="numbers cabin">
+                <th>Hytte</th>
+            </tr>
+            <tr class="numbers house">
+                <th>Hus</th>
+            </tr>
+            <tr class="numbers tower">
+                <th>Tårn</th>
+            </tr>
+            <tr class="numbers chance">
+                <th>Sjanse</th>
+            </tr>
+            <tr class="numbers maxiyatzy">
+                <th>Maxi Yatzy</th>
+            </tr>
+            <tr class="numbers total">
+                <th>Total</th>
+            </tr>
+        </table>
+    </div>
+    <div style="margin: 5px;" >
+        <div>
+            <label for="roomID">Rom ID</label>
+            <input type="text" name="roomID" id="roomID" onchange="GetSaveData(this.value)">
+        </div>
+        <div id="playerInputContainer">
+            <label for="name">Navn</label>
+            <input type="text" name="name" id="name-input" onchange=CreatePlayer(this.value)>
+            <button onclick="hidePlayerInput()">Ferdig</button>
+        </div>
+        <button style="display:none;" id="playerInputShowButton" onclick="showPlayerInput()">Legg til flere</button>
+    </div>
+</div>
+<button onclick="UpdateTotals()">Fullfør Spill</button>
+<button onclick="NewGame()">Nytt Spill</button>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.firestore().doc('/foo/bar').get().then(() => { });
+        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        // firebase.analytics(); // call to activate
+        // firebase.analytics().logEvent('tutorial_completed');
+        // firebase.performance(); // call to activate
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+        let app = firebase.app();
+        let features = [
+            'auth', 
+            'database', 
+            'firestore',
+            'functions',
+            'messaging', 
+            'storage', 
+            'analytics', 
+            'remoteConfig',
+            'performance',
+        ].filter(feature => typeof app[feature] === 'function');
+        } catch (e) {
+        console.error(e);
+        }
+    });
+    </script>
+    <!-- update the version number as needed -->
+    <script src="/__/firebase/8.2.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script src="/__/firebase/8.2.1/firebase-firestore.js"></script>
+    <!-- 
+    initialize the SDK after all desired features are loaded, set useEmulator to false
+    to avoid connecting the SDK to running emulators.
+    -->
+    <script src="/__/firebase/init.js?useEmulator=true"></script>
+    <script src="main.js"></script>
+
+</body>
+</html>

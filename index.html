@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yatzy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div style="display:flex;">
+        <div>
+            <table>
+                <tr class="name">
+                    <th>Navn</th>
+                </tr>
+                <tr class="numbers ones">
+                    <th>Enere</th>
+                </tr>
+                <tr class="numbers twos">
+                    <th>Toere</th>
+                </tr>
+                <tr class="numbers threes">
+                    <th>Treere</th>
+                </tr>
+                <tr class="numbers fours">
+                    <th>Firere</th>
+                </tr>
+                <tr class="numbers fives">
+                    <th>Femere</th>
+                </tr>
+                <tr class="numbers sixes">
+                    <th>Seksere</th>
+                </tr>
+                <tr class="numbers sum">
+                    <th>Sum</th>
+                </tr>
+                <tr class="numbers bonus">
+                    <th>Bonus</th>
+                </tr>
+                <tr class="numbers pair">
+                    <th>1 Par</th>
+                </tr>
+                <tr class="numbers twopair">
+                    <th>2 Par</th>
+                </tr>
+                <tr class="numbers threepair">
+                    <th>3 Par</th>
+                </tr>
+                <tr class="numbers toak">
+                    <th>3 Like</th>
+                </tr>
+                <tr class="numbers foak">
+                    <th>4 Like</th>
+                </tr>
+                <tr class="numbers fioak">
+                    <th>5 Like</th>
+                </tr>
+                <tr class="numbers sstraight">
+                    <th>Liten Straight</th>
+                </tr>
+                <tr class="numbers lstraight">
+                    <th>Stor Straight</th>
+                </tr>
+                <tr class="numbers fstraight">
+                    <th>Full Straight</th>
+                </tr>
+                <tr class="numbers cabin">
+                    <th>Hytte</th>
+                </tr>
+                <tr class="numbers house">
+                    <th>Hus</th>
+                </tr>
+                <tr class="numbers tower">
+                    <th>Tårn</th>
+                </tr>
+                <tr class="numbers chance">
+                    <th>Sjanse</th>
+                </tr>
+                <tr class="numbers maxiyatzy">
+                    <th>Maxi Yatzy</th>
+                </tr>
+                <tr class="numbers total">
+                    <th>Total</th>
+                </tr>
+            </table>
+        </div>
+        <div style="margin: 5px;" >
+            <div id="playerInputContainer">
+                <label for="name">Navn</label>
+                <input type="text" name="name" id="name-input" onchange=createPlayer(this.value)>
+                <button onclick="hidePlayerInput()">Ferdig</button>
+            </div>
+            <button style="display:none;" id="playerInputShowButton" onclick="showPlayerInput()">Legg til flere</button>
+        </div>
+    </div>
+    <button onclick="updateTotals()">Fullfør Spill</button>
+    <script src="main.js"></script>
+</body>
+</html>

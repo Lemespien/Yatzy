@@ -1,0 +1,38 @@
+table, th, td {
+    border: 1px solid black;
+}
+
+tr, th, td {
+    height: 10px;
+    font-size: 1rem;
+}
+
+table tr:nth-child(odd) {
+    background: rgb(11, 131, 179);
+}
+table tr:nth-child(even) {
+    background: rgb(39, 178, 233);
+}
+
+
+table td {
+    min-width: 100px;
+    width:150px; 
+    text-align: center;
+}
+.failed {
+    background-color: crimson;
+}
+input {
+    width: 75%;
+    height: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+}
+input:disabled {
+    color: black;
+    border: none;
+    background-color: rgb(1, 255, 128);
+    opacity: 1;
+}
