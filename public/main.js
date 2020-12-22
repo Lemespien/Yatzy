@@ -94,24 +94,29 @@ function PlayerObject(playerName, playerNameFormatted, playerOrder) {
     }
 
     this.UpdateSum = () => {
-        this.playerData.sum = this.playerData.ones + this.playerData.twos + this.playerData.threes +this.playerData.fours + this.playerData.fives + this.playerData.sixes;
+        let topArray = [this.playerData.ones, this.playerData.twos, this.playerData.threes, this.playerData.fours, this.playerData.fives, this.playerData.sixes]
+        let sum = topArray.reduce((a,b) => {
+            if (b > 0) return a + b;
+            return a;
+        }, 0);
+        this.playerData.sum = sum;
         if (this.playerData.sum >= 84) {
             this.playerData.bonus = 100;
             document.querySelector("#"+this.playerData.id +"-bonus").value = this.playerData.bonus;
         }
-        console.log(this.playerData);
         document.querySelector("#"+this.playerData.id +"-sum").value = this.playerData.sum;
     }, 
 
     this.AddNumber = (value, numberID) => {
         let splitID = numberID.split("-");
         let element = document.querySelector("#"+numberID);
+        element.parentNode.classList.remove("filled", "failed");
         let className = "filled";
         if (isNaN(value) || value < 0) {
             value = -1;
             element.value = -1;
             className = "failed";
-        } 
+        }
         element.parentNode.classList.add(className);
         this.playerData[splitID[1]] = value;
     },
@@ -179,10 +184,7 @@ function CleanUp() {
     const allTDs = document.querySelectorAll("td");
     Array.from(allTDs).forEach(td => td.parentNode.removeChild(td));
     GameData = {};
-    Object.values(players).forEach(player => {
-        player.playerData = {};
-    })
-    
+    players = {};
 }
 
 function CreateBoard() {
@@ -206,6 +208,7 @@ function UpdateBoard() {
                 if (!IsFunction(data)) {
                     let element = document.querySelector("#"+id + "-" + data);
                     if (data != "sum") {
+                        element.parentNode.classList.remove("filled", "failed");
                         if (GameData[key][data] < 0) {
                             element.parentNode.classList.add("failed");
                         } else if (GameData[key][data] > 0)
@@ -324,6 +327,7 @@ function SaveGame() {
         date_created: GameData.date_created || Date.now(),
     }
     Object.keys(players).forEach(key => {
+        console.log(key);
         playerDataCollection[players[key].playerData.id] = players[key].playerData;
     });
     if (gameID == null) {

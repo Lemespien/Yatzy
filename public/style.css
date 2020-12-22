@@ -1,8 +1,17 @@
+:root {
+    --borderRadius: 4px;
+}
 body {
     color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    background-color: rgb(43, 43, 43);
+}
+th {
+    font-weight: 500;
 }
 table, th, td {
-    border: 1px solid black;
+    border-radius: var(--borderRadius);
 }
 
 tr, th, td {
@@ -34,12 +43,23 @@ input {
     width: 75%;
     height: 1rem;
     text-align: center;
+    border: none;
     font-size: 1rem;
     font-weight: 500;
+    border-radius: var(--borderRadius);
 }
 input:disabled {
     color: black;
-    border: none;
     background-color:#d4ffb2;
     opacity: 1;
+}
+
+button {
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    border-radius: var(--borderRadius);
+    border: none;
+    background-color: #3796d4;
+    width: 150px;
+    height: 25px;
 }
