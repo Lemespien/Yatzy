@@ -90,7 +90,7 @@ function PlayerObject(playerName, playerNameFormatted, playerOrder) {
         this.playerData = {...PlayerData}
         this.playerData.name = playerName;
         this.playerData.id = playerNameFormatted;
-        this.playerOrder = playerOrder;
+        this.playerData.playerOrder = playerOrder;
     }
 
     this.UpdateSum = () => {
@@ -106,8 +106,8 @@ function PlayerObject(playerName, playerNameFormatted, playerOrder) {
     this.AddNumber = (value, numberID) => {
         let splitID = numberID.split("-");
         if (isNaN(value) || value < 0) {
-            value = 0;
-            document.querySelector("#"+numberID).value = 0;
+            value = -1;
+            document.querySelector("#"+numberID).value = -1;
             document.querySelector("#"+numberID).classList.add("failed");
         } 
         this.playerData[splitID[1]] = value;
@@ -183,13 +183,17 @@ function CleanUp() {
 }
 
 function CreateBoard() {
-    const PlayerKeys = Object.keys(GameData).filter(key => key != "date_created").sort(playerData => playerData.playerOrder);
-    console.log(PlayerKeys);
-    Object.keys(GameData).forEach(key => {
-        if (key != "date_created"){
-            CreatePlayer(GameData[key].name);
-        }
+    const PlayerKeys = Object.keys(GameData).filter(key => key != "date_created").sort((a, b) =>{
+        return GameData[a].playerOrder > GameData[b].playerOrder ? 1 : -1;
     });
+    PlayerKeys.forEach(player => {
+        CreatePlayer(GameData[player].name);
+    });
+    // Object.keys(GameData).forEach(key => {
+    //     if (key != "date_created" && key != "undefined"){
+    //         CreatePlayer(GameData[key].name);
+    //     }
+    // });
     Object.values(players).forEach(player => {
         player.UpdateSum();
     });
@@ -223,7 +227,6 @@ function IsFunction(property) {
 let players = {
 }
 
-let PlayerOrder = 0;
 function CreatePlayer(playerName) {
     const playerNameFormatted = playerName.replaceAll(" ", "").toLowerCase();
     const namesRow = document.querySelector("tr.name");
@@ -231,8 +234,8 @@ function CreatePlayer(playerName) {
     nameElement.innerText = playerName;
     nameElement.id = playerNameFormatted;
     namesRow.appendChild(nameElement);
-    let playerObject= new PlayerObject(playerName, playerNameFormatted, PlayerOrder);
-    PlayerOrder++;
+    let playerLength = Object.keys(players).length;
+    let playerObject= new PlayerObject(playerName, playerNameFormatted, playerLength);
     for (const property in playerObject.playerData) {
         AddColumn(property, playerObject);
     }
