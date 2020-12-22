@@ -205,10 +205,12 @@ function UpdateBoard() {
             Object.keys(GameData[key]).forEach(data => {
                 if (!IsFunction(data)) {
                     let element = document.querySelector("#"+id + "-" + data);
-                    if (GameData[key][data] < 0) {
-                        element.parentNode.classList.add("failed");
-                    } else if (GameData[key][data] > 0 && data != "sum")
-                        element.parentNode.classList.add("filled");
+                    if (data != "sum") {
+                        if (GameData[key][data] < 0) {
+                            element.parentNode.classList.add("failed");
+                        } else if (GameData[key][data] > 0)
+                            element.parentNode.classList.add("filled");
+                    }
                     element.value = GameData[key][data];
                 }
             });
