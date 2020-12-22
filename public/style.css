@@ -1,3 +1,6 @@
+body {
+    color: white;
+}
 table, th, td {
     border: 1px solid black;
 }
@@ -5,13 +8,14 @@ table, th, td {
 tr, th, td {
     height: 10px;
     font-size: 1rem;
+    min-width: 120px;
 }
 
 table tr:nth-child(odd) {
-    background: rgb(11, 131, 179);
+    background: #062529;
 }
 table tr:nth-child(even) {
-    background: rgb(39, 178, 233);
+    background: #12353a;
 }
 
 
@@ -21,7 +25,10 @@ table td {
     text-align: center;
 }
 .failed {
-    background-color: crimson;
+    background-color: #ab3345;
+}
+.filled {
+    background-color: #35757e;
 }
 input {
     width: 75%;
@@ -33,6 +40,6 @@ input {
 input:disabled {
     color: black;
     border: none;
-    background-color: rgb(1, 255, 128);
+    background-color:#d4ffb2;
     opacity: 1;
 }

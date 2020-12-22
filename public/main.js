@@ -105,11 +105,14 @@ function PlayerObject(playerName, playerNameFormatted, playerOrder) {
 
     this.AddNumber = (value, numberID) => {
         let splitID = numberID.split("-");
+        let element = document.querySelector("#"+numberID);
+        let className = "filled";
         if (isNaN(value) || value < 0) {
             value = -1;
-            document.querySelector("#"+numberID).value = -1;
-            document.querySelector("#"+numberID).classList.add("failed");
+            element.value = -1;
+            className = "failed";
         } 
+        element.parentNode.classList.add(className);
         this.playerData[splitID[1]] = value;
     },
 
@@ -189,27 +192,30 @@ function CreateBoard() {
     PlayerKeys.forEach(player => {
         CreatePlayer(GameData[player].name);
     });
-    // Object.keys(GameData).forEach(key => {
-    //     if (key != "date_created" && key != "undefined"){
-    //         CreatePlayer(GameData[key].name);
-    //     }
-    // });
+
     Object.values(players).forEach(player => {
         player.UpdateSum();
     });
 }
+
 function UpdateBoard() {
     Object.keys(GameData).forEach(key => {
         if (key != "date_created") {
             const id = GameData[key].id;
             Object.keys(GameData[key]).forEach(data => {
                 if (!IsFunction(data)) {
-                    document.querySelector("#"+id + "-" + data).value = GameData[key][data];
+                    let element = document.querySelector("#"+id + "-" + data);
+                    if (GameData[key][data] < 0) {
+                        element.parentNode.classList.add("failed");
+                    } else if (GameData[key][data] > 0 && data != "sum")
+                        element.parentNode.classList.add("filled");
+                    element.value = GameData[key][data];
                 }
             });
         }
     });
 }
+
 function IsFunction(property) {
     switch (property) {
         case "UpdateSum":
