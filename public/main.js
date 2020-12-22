@@ -208,7 +208,7 @@ function UpdateBoard() {
             Object.keys(GameData[key]).forEach(data => {
                 if (!IsFunction(data)) {
                     let element = document.querySelector("#"+id + "-" + data);
-                    if (data != "sum") {
+                    if (data != "sum" && data != "bonus") {
                         element.parentNode.classList.remove("filled", "failed");
                         if (GameData[key][data] < 0) {
                             element.parentNode.classList.add("failed");

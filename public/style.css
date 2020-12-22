@@ -40,7 +40,8 @@ table td {
     background-color: #35757e;
 }
 input {
-    width: 75%;
+    max-width: 60px;
+    min-width: 50px;
     height: 1rem;
     text-align: center;
     border: none;
@@ -62,4 +63,13 @@ button {
     background-color: #3796d4;
     width: 150px;
     height: 25px;
+}
+table {
+    border-spacing: 3px 3px;
+}
+.numbers.sixes {
+    border-spacing: 0px 10px;
+}
+.row-spacing {
+    height: 1px;
 }
