@@ -96,6 +96,7 @@ function PlayerObject(playerName, playerNameFormatted, playerOrder) {
     this.UpdateSum = () => {
         let topArray = [this.playerData.ones, this.playerData.twos, this.playerData.threes, this.playerData.fours, this.playerData.fives, this.playerData.sixes]
         let sum = topArray.reduce((a,b) => {
+            // only count positive values
             if (b > 0) return a + b;
             return a;
         }, 0);
@@ -309,6 +310,7 @@ function UpdateTotals() {
         : winner;
         winnerSum = players[key].playerData.total;
     });
+    SaveGame();
 }
 
 function hidePlayerInput() {
@@ -327,7 +329,6 @@ function SaveGame() {
         date_created: GameData.date_created || Date.now(),
     }
     Object.keys(players).forEach(key => {
-        console.log(key);
         playerDataCollection[players[key].playerData.id] = players[key].playerData;
     });
     if (gameID == null) {
