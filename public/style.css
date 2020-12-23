@@ -20,13 +20,13 @@ tr, th, td {
     min-width: 120px;
 }
 
-table tr:nth-child(odd) {
+.odd {
     background: #062529;
 }
-table tr:nth-child(even) {
+
+.even {
     background: #12353a;
 }
-
 
 table td {
     min-width: 100px;

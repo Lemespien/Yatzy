@@ -1,5 +1,11 @@
 var db = firebase.app().firestore();
 
+let numberElements = document.querySelectorAll(".numbers");
+
+for (let index = 0; index < numberElements.length; index++) {
+    const element = numberElements[index];
+    element.classList.add(index % 2 == 0 ? "even" : "odd");
+}
 
 var GameData = {};
 var gameID = null;
